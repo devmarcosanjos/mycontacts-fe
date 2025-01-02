@@ -33,6 +33,7 @@ export const Header = styled.header`
 
 export const ListContainer = styled.div`
     margin-top: 24px;
+    margin-bottom: 8px;
 
     button {
         background: transparent;
