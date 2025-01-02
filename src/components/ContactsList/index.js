@@ -1,4 +1,4 @@
-import { Container, Header, ListContainer } from "./styles";
+import { Card, Container, Header, ListContainer } from "./styles";
 
 import arrow from "../../assets/icons/arrow.svg";
 
@@ -17,6 +17,8 @@ export default function ContactsList() {
                         <img src={arrow} alt="arrow" />
                     </button>
                 </header>
+
+                <Card>...</Card>
             </ListContainer>
         </Container>
     );
