@@ -34,7 +34,7 @@ export const Header = styled.header`
 export const ListContainer = styled.div`
     margin-top: 24px;
 
-    .sort-button {
+    button {
         background: transparent;
         border: none;
         display: flex;

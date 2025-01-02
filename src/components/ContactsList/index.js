@@ -12,7 +12,7 @@ export default function ContactsList() {
 
             <ListContainer>
                 <header>
-                    <button type="button" className="sort-button">
+                    <button type="button">
                         <span>Nome</span>
                         <img src={arrow} alt="arrow" />
                     </button>
