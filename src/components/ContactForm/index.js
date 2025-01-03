@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ButtonContainer, Form } from "./styles";
 import FormGroup from "../FormGroup";
 import Input from "../Input";
@@ -7,10 +7,16 @@ import Button from "../Button";
 import PropTypes from "prop-types";
 
 export default function ContactForm({ buttonLabel }) {
+    const [name, setName] = useState("");
+
     return (
         <Form>
             <FormGroup>
-                <Input placeholder="Nome" />
+                <Input
+                    value={name}
+                    placeholder="Nome"
+                    onChange={(event) => setName(event.target.value)}
+                />
             </FormGroup>
 
             <FormGroup error="O formato é inválido.">
