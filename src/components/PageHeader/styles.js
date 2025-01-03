@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const Container = styled.header`
     a {
         text-decoration: none;
+        display: flex;
+        align-items: center;
         span {
             font-size: 16px;
             font-weight: bold;
