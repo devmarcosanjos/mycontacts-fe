@@ -1,14 +1,14 @@
 import React from "react";
+import Header from "../Header";
+import Routes from "../../routes";
 
-import { ThemeProvider } from "styled-components";
 import GlobalStyles from "../../assets/styles/global";
 import defaultTheme from "../../assets/styles/themes/default";
-import { Container } from "./styles";
-import Header from "../Header";
-import ContactsList from "../ContactsList";
-import Routes from "../../routes";
+
+import { ThemeProvider } from "styled-components";
 import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 
+import { Container } from "./styles";
 function App() {
     return (
         <>
@@ -18,7 +18,6 @@ function App() {
                     <Container>
                         <Header />
                         <Routes />
-                        <ContactsList />
                     </Container>
                 </ThemeProvider>
             </BrowserRouter>
