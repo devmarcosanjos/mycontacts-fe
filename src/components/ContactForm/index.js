@@ -34,10 +34,13 @@ export default function ContactForm({ buttonLabel }) {
     }
 
     function handleEmailChange(event) {
-        setEmail(event.target.value);
+        const emailValue = event.target.value;
+        setEmail(emailValue);
 
-        if (event.target.value && !isEmailValid(event.target.value)) {
+        if (!emailValue) {
             setError({ field: "email", message: "Email é obrigatório" });
+        } else if (!isEmailValid(emailValue)) {
+            setError({ field: "email", message: "Email inválido" });
         } else {
             removeError("email");
         }
