@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { ButtonContainer, Form } from "./styles";
 import FormGroup from "../FormGroup";
 import Input from "../Input";
@@ -8,7 +8,9 @@ import PropTypes from "prop-types";
 
 export default function ContactForm({ buttonLabel }) {
     const [name, setName] = useState("");
-    const emailInput = useRef(null);
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [category, setCategory] = useState("");
 
     return (
         <Form>
@@ -22,20 +24,30 @@ export default function ContactForm({ buttonLabel }) {
 
             <FormGroup>
                 <Input
-                    placeholder="E-mail"
                     type="email"
-                    ref={emailInput}
-                    defaultValue="marcos@gmail.com"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
                 />
             </FormGroup>
 
             <FormGroup>
-                <Input placeholder="Telefone" type="number" />
+                <Input
+                    placeholder="Telefone"
+                    type="number"
+                    value={phone}
+                    onChange={(event) => setPhone(event.target.value)}
+                />
             </FormGroup>
 
             <FormGroup>
-                <Select>
+                <Select
+                    value={category}
+                    onChange={(event) => setCategory(event.target.value)}
+                >
+                    <option value="">Categoria</option>
                     <option value="instagram">Instagram</option>
+                    <option value="discord">Discord</option>
                 </Select>
             </FormGroup>
 
