@@ -7,13 +7,15 @@ import Button from "../Button";
 import PropTypes from "prop-types";
 
 import isEmailValid from "../../utils/isEmailValid";
+import useErrors from "../../hooks/useErrors";
 
 export default function ContactForm({ buttonLabel }) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [category, setCategory] = useState("");
-    const [error, setErrors] = useState([]);
+
+    const { getErrorMessageByFieldName, removeError, setError } = useErrors();
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -25,37 +27,19 @@ export default function ContactForm({ buttonLabel }) {
         setName(event.target.value);
 
         if (!event.target.value) {
-            setErrors((prevState) => [
-                ...prevState,
-                { field: "name", message: "Nome é obrigatório" },
-            ]);
+            setError({ field: "name", message: "Nome é obrigatório" });
         } else {
-            setErrors((prevState) =>
-                prevState.filter((error) => error.field !== "name")
-            );
+            removeError("name");
         }
     }
-
-    console.log(error);
 
     function handleEmailChange(event) {
         setEmail(event.target.value);
 
         if (event.target.value && !isEmailValid(event.target.value)) {
-            const errorAlreadyExists = error.find(
-                (error) => error.filed === "email"
-            );
-
-            if (errorAlreadyExists) return;
-
-            setErrors((prevState) => [
-                ...prevState,
-                { field: "email", message: "Email é obrigatório" },
-            ]);
+            setError({ field: "email", message: "Email é obrigatório" });
         } else {
-            setErrors((prevState) =>
-                prevState.filter((error) => error.field !== "email")
-            );
+            removeError("email");
         }
     }
 
@@ -65,10 +49,6 @@ export default function ContactForm({ buttonLabel }) {
 
     function handleCategoryChange(event) {
         setCategory(event.target.value);
-    }
-
-    function getErrorMessageByFieldName(filedName) {
-        return error.find((error) => error.field === filedName)?.message;
     }
 
     return (
