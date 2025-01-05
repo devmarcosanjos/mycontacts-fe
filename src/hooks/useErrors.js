@@ -13,7 +13,7 @@ export default function useErrors() {
         setErrors((prevState) => [...prevState, { field, message }]);
     }
 
-    function removeError({ fieldName }) {
+    function removeError(fieldName) {
         setErrors((prevState) =>
             prevState.filter((error) => error.field !== fieldName)
         );
