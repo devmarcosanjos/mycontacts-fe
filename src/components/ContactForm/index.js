@@ -11,11 +11,41 @@ export default function ContactForm({ buttonLabel }) {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [category, setCategory] = useState("");
+    const [erros, setErrors] = useState([]);
 
     function handleSubmit(event) {
         event.preventDefault();
 
         console.log({ name, email, phone, category });
+    }
+
+    function handleNameChange(event) {
+        setName(event.target.value);
+
+        if (!event.target.value) {
+            setErrors((prevState) => [
+                ...prevState,
+                { filed: "name", message: "Nome é obrigatório" },
+            ]);
+        } else {
+            setErrors((prevState) =>
+                prevState.filter((error) => error.filed !== "name")
+            );
+        }
+    }
+
+    console.log(erros);
+
+    function handleEmailChange(event) {
+        setEmail(event.target.value);
+    }
+
+    function handlePhoneChange(event) {
+        setPhone(event.target.value);
+    }
+
+    function handleCategoryChange(event) {
+        setCategory(event.target.value);
     }
 
     return (
@@ -24,7 +54,7 @@ export default function ContactForm({ buttonLabel }) {
                 <Input
                     value={name}
                     placeholder="Nome"
-                    onChange={(event) => setName(event.target.value)}
+                    onChange={handleNameChange}
                 />
             </FormGroup>
 
@@ -33,7 +63,7 @@ export default function ContactForm({ buttonLabel }) {
                     type="email"
                     placeholder="Email"
                     value={email}
-                    onChange={(event) => setEmail(event.target.value)}
+                    onChange={handleEmailChange}
                 />
             </FormGroup>
 
@@ -42,15 +72,12 @@ export default function ContactForm({ buttonLabel }) {
                     placeholder="Telefone"
                     type="number"
                     value={phone}
-                    onChange={(event) => setPhone(event.target.value)}
+                    onChange={handlePhoneChange}
                 />
             </FormGroup>
 
             <FormGroup>
-                <Select
-                    value={category}
-                    onChange={(event) => setCategory(event.target.value)}
-                >
+                <Select value={category} onChange={handleCategoryChange}>
                     <option value="">Categoria</option>
                     <option value="instagram">Instagram</option>
                     <option value="discord">Discord</option>
