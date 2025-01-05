@@ -19,6 +19,12 @@ export default function ContactForm({ buttonLabel }) {
 
     const { getErrorMessageByFieldName, removeError, setError } = useErrors();
 
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        console.log({ name, email, phone: phone.replace(/\D/g, ""), category });
+    }
+
     function handleNameChange(event) {
         setName(event.target.value);
 
@@ -50,17 +56,6 @@ export default function ContactForm({ buttonLabel }) {
         setCategory(event.target.value);
     }
 
-    function handleSubmit(event) {
-        event.preventDefault();
-
-        console.log({
-            name,
-            email,
-            phone: phone.replace(/\D/g, ""),
-            category,
-        });
-    }
-
     return (
         <Form onSubmit={handleSubmit} noValidate>
             <FormGroup error={getErrorMessageByFieldName("name")}>
@@ -85,6 +80,7 @@ export default function ContactForm({ buttonLabel }) {
             <FormGroup>
                 <Input
                     placeholder="Telefone"
+                    type="number"
                     value={phone}
                     onChange={handlePhoneChange}
                     maxLength="15"
