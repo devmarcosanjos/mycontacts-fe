@@ -9,6 +9,8 @@ import PropTypes from "prop-types";
 import isEmailValid from "../../utils/isEmailValid";
 import useErrors from "../../hooks/useErrors";
 
+import formartPhone from "../../utils/formatPhone";
+
 export default function ContactForm({ buttonLabel }) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -16,12 +18,6 @@ export default function ContactForm({ buttonLabel }) {
     const [category, setCategory] = useState("");
 
     const { getErrorMessageByFieldName, removeError, setError } = useErrors();
-
-    function handleSubmit(event) {
-        event.preventDefault();
-
-        console.log({ name, email, phone, category });
-    }
 
     function handleNameChange(event) {
         setName(event.target.value);
@@ -47,11 +43,22 @@ export default function ContactForm({ buttonLabel }) {
     }
 
     function handlePhoneChange(event) {
-        setPhone(event.target.value);
+        setPhone(formartPhone(event.target.value));
     }
 
     function handleCategoryChange(event) {
         setCategory(event.target.value);
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        console.log({
+            name,
+            email,
+            phone: phone.replace(/\D/g, ""),
+            category,
+        });
     }
 
     return (
@@ -78,9 +85,9 @@ export default function ContactForm({ buttonLabel }) {
             <FormGroup>
                 <Input
                     placeholder="Telefone"
-                    type="number"
                     value={phone}
                     onChange={handlePhoneChange}
+                    maxLength="15"
                 />
             </FormGroup>
 
