@@ -6,6 +6,8 @@ import Select from "../Select";
 import Button from "../Button";
 import PropTypes from "prop-types";
 
+import isEmailValid from "../../utils/isEmailValid";
+
 export default function ContactForm({ buttonLabel }) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -38,6 +40,17 @@ export default function ContactForm({ buttonLabel }) {
 
     function handleEmailChange(event) {
         setEmail(event.target.value);
+
+        if (event.target.value && !isEmailValid(event.target.value)) {
+            setErrors((prevState) => [
+                ...prevState,
+                { filed: "email", message: "Email é obrigatório" },
+            ]);
+        } else {
+            setErrors((prevState) =>
+                prevState.filter((error) => error.filed !== "email")
+            );
+        }
     }
 
     function handlePhoneChange(event) {
