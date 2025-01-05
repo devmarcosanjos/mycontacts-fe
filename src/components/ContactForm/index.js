@@ -50,11 +50,11 @@ export default function ContactForm({ buttonLabel }) {
 
             setErrors((prevState) => [
                 ...prevState,
-                { filed: "email", message: "Email é obrigatório" },
+                { field: "email", message: "Email é obrigatório" },
             ]);
         } else {
             setErrors((prevState) =>
-                prevState.filter((error) => error.filed !== "email")
+                prevState.filter((error) => error.field !== "email")
             );
         }
     }
@@ -82,8 +82,9 @@ export default function ContactForm({ buttonLabel }) {
                 />
             </FormGroup>
 
-            <FormGroup>
+            <FormGroup error={getErrorMessageByFieldName("email")}>
                 <Input
+                    error={getErrorMessageByFieldName("email")}
                     type="email"
                     placeholder="Email"
                     value={email}
