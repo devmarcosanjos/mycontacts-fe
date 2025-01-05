@@ -4,12 +4,13 @@ export default {
         primary: {
             lighter: "#E0E3FF",
             light: "#6674F4",
-            main: "#5061FC",
+            main: "#5061fc",
             dark: "#3346F0",
         },
         gray: {
-            900: "#222",
-            200: "#BCBCBC",
+            900: "#22222",
+            200: "#bcbcbc",
+            100: "#E5E5E5",
         },
         danger: {
             light: "#F97171",
