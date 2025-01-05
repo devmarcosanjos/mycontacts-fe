@@ -42,6 +42,12 @@ export default function ContactForm({ buttonLabel }) {
         setEmail(event.target.value);
 
         if (event.target.value && !isEmailValid(event.target.value)) {
+            const errorAlreadyExists = erros.find(
+                (error) => error.filed === "email"
+            );
+
+            if (errorAlreadyExists) return;
+
             setErrors((prevState) => [
                 ...prevState,
                 { filed: "email", message: "Email é obrigatório" },
